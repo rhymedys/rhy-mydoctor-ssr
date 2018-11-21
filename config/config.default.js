@@ -2,10 +2,13 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-11-21 22:22:40 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2018-11-21 22:23:58
+ * @Last Modified time: 2018-11-21 22:30:49
  */
 
 'use strict';
+
+const path = require('path');
+
 
 module.exports = appInfo => {
   const config = exports = {};
@@ -19,6 +22,23 @@ module.exports = appInfo => {
       options: {
         useNewUrlParser: true,
       },
+    },
+  };
+
+
+  config.security = {
+    csrf: {
+      useSession: false, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+      enable: false,
+    },
+  };
+
+  config.view = {
+    root: [
+      path.join(appInfo.baseDir, 'app/view'),
+    ].join(','),
+    mapping: {
+      '.ejs': 'ejs',
     },
   };
 
