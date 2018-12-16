@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com
  * @Date: 2018-12-12 21:36:51
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2018-12-12 21:38:59
+ * @Last Modified time: 2018-12-16 20:45:40
  */
 
 'use strict';
@@ -14,8 +14,20 @@ const SWPrecachePlugin = require('sw-precache-webpack-plugin');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 
 const config = merge(base, {
+  mode: process.env.NODE_ENV,
   entry: {
     app: './app/view/mydoctor_ssr/entry-client.js',
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test(module) {
+            return /node_modules/.test(module.context) && !/\.css$/.test(module.request);
+          },
+        },
+      },
+    },
   },
   plugins: [
     // strip dev-only code in Vue source
@@ -23,24 +35,24 @@ const config = merge(base, {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"client"',
     }),
-    // extract vendor chunks for better caching
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks(module) {
-        // a module is extracted into the vendor chunk if...
-        return (
-          // it's inside node_modules
-          /node_modules/.test(module.context) &&
-          // and not a CSS file (due to extract-text-webpack-plugin limitation)
-          !/\.css$/.test(module.request)
-        );
-      },
-    }),
-    // extract webpack runtime & manifest to avoid vendor chunk hash changing
-    // on every build.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-    }),
+    // // extract vendor chunks for better caching
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   minChunks(module) {
+    //     // a module is extracted into the vendor chunk if...
+    //     return (
+    //       // it's inside node_modules
+    //       /node_modules/.test(module.context) &&
+    //       // and not a CSS file (due to extract-text-webpack-plugin limitation)
+    //       !/\.css$/.test(module.request)
+    //     );
+    //   },
+    // }),
+    // // extract webpack runtime & manifest to avoid vendor chunk hash changing
+    // // on every build.
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest',
+    // }),
     new VueSSRClientPlugin(),
   ],
 });
@@ -54,23 +66,22 @@ if (process.env.NODE_ENV === 'production') {
       minify: true,
       dontCacheBustUrlsMatching: /./,
       staticFileGlobsIgnorePatterns: [ /\.map$/, /\.json$/ ],
-      runtimeCaching: [
-        {
-          urlPattern: '/',
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: /\/(top|new|show|ask|jobs)/,
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: '/item/:id',
-          handler: 'networkFirst',
-        },
-        {
-          urlPattern: '/user/:id',
-          handler: 'networkFirst',
-        },
+      runtimeCaching: [{
+        urlPattern: '/',
+        handler: 'networkFirst',
+      },
+      {
+        urlPattern: /\/(top|new|show|ask|jobs)/,
+        handler: 'networkFirst',
+      },
+      {
+        urlPattern: '/item/:id',
+        handler: 'networkFirst',
+      },
+      {
+        urlPattern: '/user/:id',
+        handler: 'networkFirst',
+      },
       ],
     })
   );

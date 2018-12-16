@@ -18,27 +18,36 @@
     "lru-cache": "^5.1.1"
   },
   "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
+    "autoprefixer": "^9.4.2",
+    "chalk": "^2.4.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.0.0",
     "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.14.0",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
-    "webstorm-disable-index": "^1.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "ora": "^3.0.0",
+    "rimraf": "^2.6.2",
+    "sw-precache-webpack-plugin": "^0.11.5",
+    "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
     "vue-template-compiler": "^2.5.21",
     "webpack": "^4.27.1",
     "webpack-dev-middleware": "^3.4.0",
+    "webpack-dev-server": "^3.1.10",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.5",
     "webpack-node-externals": "^1.7.2",
-    "css-loader": "^2.0.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "rimraf": "^2.6.2",
-    "cross-env": "^5.2.0",
-    "autoprefixer": "^9.4.2"
+    "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
     "node": ">=8.9.0"
@@ -54,9 +63,7 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "build": "rimraf ./app/public/mydoctor_ssr && npm run build:client && npm run build:server",
-    "build:client": "cross-env NODE_ENV=production webpack --config build/webpack.client.config.js --progress --hide-modules",
-    "build:server": "cross-env NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules"
+    "build": "node build/build.js"
   },
   "ci": {
     "version": "8"

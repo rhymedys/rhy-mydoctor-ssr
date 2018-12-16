@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com
  * @Date: 2018-12-12 21:39:26
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2018-12-12 21:40:08
+ * @Last Modified time: 2018-12-16 20:45:44
  */
 'use strict';
 const webpack = require('webpack');
@@ -12,6 +12,7 @@ const nodeExternals = require('webpack-node-externals');
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 
 module.exports = merge(base, {
+  mode: process.env.NODE_ENV,
   target: 'node',
   devtool: '#source-map',
   entry: './app/view/mydoctor_ssr/entry-server.js',
