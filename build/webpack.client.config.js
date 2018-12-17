@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com
  * @Date: 2018-12-12 21:36:51
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2018-12-16 20:45:40
+ * @Last Modified time: 2018-12-17 21:13:03
  */
 
 'use strict';
@@ -16,7 +16,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
 const config = merge(base, {
   mode: process.env.NODE_ENV,
   entry: {
-    app: './app/view/mydoctor_ssr/entry-client.js',
+    app: './app/view/mydoctor_ssr/entry_client.js',
   },
   optimization: {
     splitChunks: {
