@@ -47,7 +47,8 @@
     "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.5",
     "webpack-node-externals": "^1.7.2",
-    "webstorm-disable-index": "^1.2.0"
+    "webstorm-disable-index": "^1.2.0",
+    "chokidar": "^2.0.4"
   },
   "engines": {
     "node": ">=8.9.0"
