@@ -1,49 +1,48 @@
-/*
- * @Author: Rhymedys/Rhymedys@gmail.com 
- * @Date: 2018-11-21 22:22:40 
- * @Last Modified by: Rhymedys
- * @Last Modified time: 2018-11-21 22:30:49
- */
-
 'use strict';
-
 const path = require('path');
+const fs = require('fs');
+module.exports = app => {
+  const exports = {};
 
-
-module.exports = appInfo => {
-  const config = exports = {};
-
-  // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1542810037172_9203';
-
-  config.mongoose = {
-    client: {
-      url: 'mongodb://localhost:27017/mydoctor_ssr',
-      options: {
-        useNewUrlParser: true,
-      },
-    },
+  exports.siteFile = {
+    '/favicon.ico': fs.readFileSync(path.join(app.baseDir, 'app/web/asset/images/favicon.ico'))
   };
 
+  exports.vuessr = {
+    layout: path.join(app.baseDir, 'app/web/view/layout.html'),
+    renderOptions: {
+      basedir: path.join(app.baseDir, 'app/view')
+    }
+  };
 
-  config.security = {
+  exports.logger = {
+    consoleLevel: 'DEBUG',
+    dir: path.join(app.baseDir, 'logs')
+  };
+
+  exports.static = {
+    prefix: '/public/',
+    dir: path.join(app.baseDir, 'public')
+  };
+
+  exports.keys = '123456';
+
+  exports.middleware = [
+    'locals',
+    'access'
+  ];
+
+  exports.security = {
     csrf: {
-      useSession: false, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+      ignoreJSON: false,
+      cookieName: 'csrfToken',
+      sessionName: 'csrfToken',
+      headerName: 'x-csrf-token'
+    },
+    xframe: {
       enable: false,
     },
   };
 
-  config.view = {
-    root: [
-      path.join(appInfo.baseDir, 'app/view'),
-    ].join(','),
-    mapping: {
-      '.ejs': 'ejs',
-    },
-  };
-
-  // add your config here
-  config.middleware = [];
-
-  return config;
+  return exports;
 };

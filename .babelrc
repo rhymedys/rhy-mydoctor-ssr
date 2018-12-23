@@ -1,17 +1,30 @@
 {
-    "presets": [
-        "stage-0",
-        ["env", {
-            "modules": false,
-            "targets": {
-                "browsers": [
-                    "> 1%",
-                    "last 2 versions",
-                    "not ie <= 200",
-                    "safari >= 7",
-                    "chrome >= 40"
-                ]
-            }
-        }]
-    ]
+  "env":{
+    "node": {
+      "presets": [["env", {
+        "modules": false,
+        "targets": {
+          "node": "current"
+        }
+      }]],
+      "plugins": [
+        "transform-object-rest-spread",
+        "syntax-dynamic-import"
+      ]
+    },
+    "web": {
+      "presets": [["env", {
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
+      }]],
+      "plugins": [
+        "transform-object-rest-spread",
+        "syntax-dynamic-import",
+        "transform-object-assign"
+      ]
+    }
+  },
+  "comments":false
 }
