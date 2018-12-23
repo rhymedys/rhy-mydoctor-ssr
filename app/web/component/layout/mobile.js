@@ -1,9 +1,8 @@
 import Vue from 'vue';
-
 export default function createLayout(name, components, tpl) {
   return {
     name,
-    props: ['title', 'description', 'keywords', 'mobile'],
+    props: ['title', 'description', 'keywords'],
     components,
     computed: {
       vTitle() {
