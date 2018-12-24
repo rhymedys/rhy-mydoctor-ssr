@@ -38,6 +38,7 @@ export default function createLayout(name, components, tpl) {
                       <meta name="apple-mobile-web-app-title" content="Weather PWA">
                       <link rel="apple-touch-icon" href="/logo.png">
                       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+                      <script type="text/javascript" src="http://120.79.205.36:3001/lib/js/dpr.js"/>
                       </head>
                     <body :class="baseClass">
                       ${tpl}
