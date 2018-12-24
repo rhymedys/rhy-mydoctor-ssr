@@ -1,16 +1,12 @@
 <template>
-  <layout title="Rhymedys's Home" mobile="true">
+  <login-layout title="Rhymedys's Home" mobile="true">
     <div class="login-wrapper">
       <div class="login-wrapper__header">
         <div>欢迎使用</div>
       </div>
     </div>
-  </layout>
+  </login-layout>
 </template>
-
-<style lang="less" scoped>
-  @import 'login.less';
-</style>
 
 <script  src="./login.js"></script>
 
