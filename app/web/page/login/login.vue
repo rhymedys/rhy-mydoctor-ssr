@@ -4,6 +4,30 @@
       <div class="login-wrapper__header">
         <div>欢迎使用</div>
       </div>
+      <div class="login-wrapper__form">
+        <el-input 
+          v-model="id" 
+          placeholder="请输入账号"
+          clearable
+        />
+        <el-input 
+          v-model="password" 
+          placeholder="请输入密码"
+          type="password"
+          clearable
+        />
+
+        <el-button 
+          class="login-wrapper__form_confrim-btn" 
+          type="primary" 
+          :disabled="computeBtnDisabled"
+          @click="onLoginClick"
+          round
+        >
+          登录
+        </el-button>
+      </div>
+      
     </div>
   </login-layout>
 </template>

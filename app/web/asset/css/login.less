@@ -1,11 +1,26 @@
-.login-wrapper{
-    &__header{
+.login-wrapper {
+    &__header {
         background-color: #1890ff;
         height: 4rem;
-        >div{
+        position: relative;
+        >div {
             color: white;
-            text-align: center;
+            right: .25rem;
+            bottom: .1rem;
             line-height: 1rem;
+            position: absolute;
+        }
+    }
+    &__form {
+        width: 100vw;
+        padding: 0 10px;
+        &_confrim-btn {
+            width: 100%;
+        }
+        .el-input {
+            >input {
+                border-radius: 20px;
+            }
         }
     }
 }
