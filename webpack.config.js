@@ -1,15 +1,29 @@
 'use strict';
 // Document：https://www.yuque.com/easy-team/easywebpack 和 https://www.yuque.com/easy-team/egg-vue 
+
+const path = require('path');
+
+const staticDist = path.resolve(__dirname, 'public')
+
 module.exports = {
   plugins: {
     imagemini: false
   },
-  loaders:{
+  loaders: {
     less: true,
   },
-  compile:{
+  compile: {
     thread: true, // 多进程编译
-    cache: true   // 启动编译缓存
+    cache: true // 启动编译缓存
   },
-  dll:['vue','vuex','vue-router']
+  output: {
+    publicPath: '/rhymedys_home/public/'
+  },
+  dll: [{
+    name: 'vendor',
+    lib: ['vue', 'vuex', 'vue-router'],
+    path: staticDist,
+    include: [],
+    exclue: []
+  }],
 };
