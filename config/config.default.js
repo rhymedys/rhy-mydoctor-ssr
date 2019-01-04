@@ -21,7 +21,7 @@ module.exports = app => {
   };
 
   exports.static = {
-    prefix: '/rhymedys_home/public/',
+    prefix: '/public/',
     dir: path.join(app.baseDir, 'public')
   };
 

@@ -16,9 +16,6 @@ module.exports = {
     thread: true, // 多进程编译
     cache: true // 启动编译缓存
   },
-  output: {
-    publicPath: '/rhymedys_home/public/'
-  },
   dll: [{
     name: 'vendor',
     lib: ['vue', 'vuex', 'vue-router'],
