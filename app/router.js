@@ -6,4 +6,6 @@ module.exports = app => {
   } = app;
   router.get('/', controller.login.login.index)
   router.get('/my-doctor-ssr/login', controller.login.login.index)
+
+  router.post('/my-doctor-ssr/api/login', controller.login.login.login)
 };

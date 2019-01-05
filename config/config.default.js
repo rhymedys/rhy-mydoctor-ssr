@@ -42,6 +42,7 @@ module.exports = app => {
     xframe: {
       enable: false,
     },
+    
   };
 
   return exports;

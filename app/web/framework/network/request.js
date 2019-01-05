@@ -12,7 +12,10 @@ export default {
       headers['x-csrf-token'] = state.csrf;
       headers.Cookie = `csrfToken=${state.csrf}`;
     }
-    return axios.post(`${state.origin}${url}`, json, { headers });
+
+    headers['Access-Control-Allow-Origin'] = 'https://mp.mhealth100.com'
+
+    return axios.post(`${state.origin}/my-doctor-ssr/api/${url}`, json, { headers });
   },
   get(url, store = {}) {
     const { state = { origin: '' } } = store;

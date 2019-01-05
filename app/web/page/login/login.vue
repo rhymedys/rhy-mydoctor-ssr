@@ -21,17 +21,17 @@
           class="login-wrapper__form_confrim-btn" 
           type="primary" 
           :disabled="computeBtnDisabled"
-          @click="onLoginClick"
+          @click.native="onLoginClick"
           round
         >
           登录
         </el-button>
       </div>
-      
     </div>
   </login-layout>
 </template>
 
-<script  src="./login.js"></script>
+
+<script src="./login.js" type="babel"></script>
 
 
