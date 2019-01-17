@@ -15,6 +15,9 @@ export default function createLayout(name, components, tpl) {
       vDescription() {
         return this.$root.description || this.description || 'rhymedys_home';
       },
+      vEncryptKey(){
+        return this.$root.encryptKey || ''
+      },
       baseClass() {
         return this.$root.baseClass;
       }

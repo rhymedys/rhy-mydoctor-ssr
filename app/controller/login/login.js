@@ -2,13 +2,15 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-05 23:45:02
+ * @Last Modified time: 2019-01-17 09:48:27
  */
 
 'use strict'
 const cryptoJS = require("crypto-js");
 const egg = require('egg')
 const response = require('../../extend/response')
+const rsa = require('../../extend/rsa')
+const jSessionUtil  = require('../../extend/session')
 
 class Login extends egg.Controller {
 
@@ -20,8 +22,10 @@ class Login extends egg.Controller {
         const {
             ctx
         } = this
-        ctx.set('Access-Control-Allow-Origin','https://mp.mhealth100.com')
-        await ctx.render('login/login.js', {});
+        ctx.set('Access-Control-Allow-Origin', 'https://mp.mhealth100.com')
+        await ctx.render('login/login.js', {
+            encryptKey: rsa.privateKey
+        });
     }
 
 
@@ -55,7 +59,6 @@ class Login extends egg.Controller {
             }
 
             if (decryptLoginInfo) {
-                console.log(decryptLoginInfo)
                 const res = await ctx.curl(
                     'https://mp.mhealth100.com/ip-healthmanager-mobile-web/loginValid', {
                         method: 'POST',
@@ -77,9 +80,30 @@ class Login extends egg.Controller {
                         let match = res.headers['set-cookie'][0].match(JSESSIONIDReg)
                         if (match) {
                             match = match[0].replace('JSESSIONID=', '').replace(';', '')
-                            console.log(match)
-                            ctx.cookies.set('JSESSIONID', match)
-                            ctx.set('Access-Control-Allow-Origin','https://mp.mhealth100.com')
+                            jSessionUtil.setJSessionIdToCookies(ctx,match)
+
+                            const saveJSessionIdRes = await ctx.service.session.insert({
+                                userId: decryptLoginInfo.id,
+                                jSessionId: match
+                            })
+
+                            console.log(saveJSessionIdRes)
+                            // const doctorIndexInfo = await ctx.curl(
+                            //     'https://mp.mhealth100.com/ip-healthmanager-mobile-web/doctor/getDoctorIndex', {
+                            //         method: 'POST',
+                            //         dataType: 'json',
+                            //         headers: {
+                            //             Cookie: `JSESSIONID=${match}`
+                            //         },
+                            //         data: {
+                            //             commentCategory: 'CONSULTEVALUATE',
+                            //             doctorOpenId: '2B50BDE7DBE3444C8CF0C4D9CEF8C818',
+                            //             page: 1,
+                            //             pageSize: 10
+                            //         }
+                            //     }
+                            // )
+                            // console.log('doctorIndexInfo',doctorIndexInfo)
                         }
                         response.send(ctx, data, data.resultCode, data.resultDesc)
                     } else {

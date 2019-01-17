@@ -33,6 +33,7 @@
     "mint-ui": "^2.2.13",
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.17.1",
+    "node-rsa": "^1.0.2",
     "shortid": "^2.2.8",
     "showdown": "^1.8.6",
     "simplemde": "^1.11.2",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "autod-egg": "^1.0.0",
+    "egg-mongoose": "^3.1.1",
     "babel-plugin-component": "^1.1.1",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-syntax-async-generators": "^6.13.0",
