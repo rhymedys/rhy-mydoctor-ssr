@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-01-17 10:00:51 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-17 10:52:44
+ * @Last Modified time: 2019-01-17 11:44:24
  */
 
 
@@ -21,7 +21,7 @@ class Doctor extends egg.Controller {
 
 
 
-        const JSessionIdInfo =await JSessionIdUtil.getDBJSessionInfoByCookiesJSession(ctx)
+        const JSessionIdInfo = await JSessionIdUtil.getDBJSessionInfoByCookiesJSession(ctx)
         const isValidJSession = JSessionIdInfo && JSessionIdInfo.jSessionId
         if (isValidJSession) {
             await ctx.render('doctorIndex/index.js');
