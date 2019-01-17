@@ -4,7 +4,7 @@
   "description": "学习专用专属医生前后端同构",
   "scripts": {
     "dev": "egg-bin dev",
-    "start": "egg-scripts start --port=7001 --daemon --title=my_doctor_ssr",
+    "start": "ENABLE_NODE_LOG=YES egg-scripts start --port=7001 --daemon --title=my_doctor_ssr",
     "stop": "egg-scripts stop [--my_doctor_ssr]",
     "debug": "egg-bin debug",
     "clean": "easy clean all",
