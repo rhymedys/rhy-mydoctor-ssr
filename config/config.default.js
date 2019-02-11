@@ -15,6 +15,16 @@ module.exports = app => {
     }
   };
 
+
+  exports.mongoose = {
+    client: {
+      url: 'mongodb://localhost:27017/my_doctor_ssr',
+      options: {
+        useNewUrlParser: true,
+      },
+    },
+  };
+
   exports.logger = {
     consoleLevel: 'DEBUG',
     dir: path.join(app.baseDir, 'logs')

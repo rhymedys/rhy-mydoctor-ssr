@@ -2,7 +2,11 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 22:12:58 
  * @Last Modified by: Rhymedys
+<<<<<<< HEAD
  * @Last Modified time: 2019-02-11 18:40:27
+=======
+ * @Last Modified time: 2019-02-11 18:46:39
+>>>>>>> 8f24a9fa5e8ae988dd0ae0c04103e29586e2481d
  */
 import Vue from 'vue'
 import {
