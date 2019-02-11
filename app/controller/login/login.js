@@ -2,11 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
-<<<<<<< HEAD
- * @Last Modified time: 2019-02-11 18:32:34
-=======
- * @Last Modified time: 2019-01-17 09:48:27
->>>>>>> 8f24a9fa5e8ae988dd0ae0c04103e29586e2481d
+ * @Last Modified time: 2019-02-11 18:48:09
  */
 
 'use strict'
@@ -84,10 +80,6 @@ class Login extends egg.Controller {
                         let match = res.headers['set-cookie'][0].match(JSESSIONIDReg)
                         if (match) {
                             match = match[0].replace('JSESSIONID=', '').replace(';', '')
-<<<<<<< HEAD
-                            console.log(match)
-                            ctx.cookies.set('JSESSIONID', match)
-=======
                             jSessionUtil.setJSessionIdToCookies(ctx,match)
 
                             const saveJSessionIdRes = await ctx.service.session.insert({
@@ -112,7 +104,6 @@ class Login extends egg.Controller {
                             //     }
                             // )
                             // console.log('doctorIndexInfo',doctorIndexInfo)
->>>>>>> 8f24a9fa5e8ae988dd0ae0c04103e29586e2481d
                         }
                         response.send(ctx, data, data.resultCode, data.resultDesc)
                     } else {
