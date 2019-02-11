@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-05 23:45:02
+ * @Last Modified time: 2019-02-11 18:32:34
  */
 
 'use strict'
@@ -79,7 +79,6 @@ class Login extends egg.Controller {
                             match = match[0].replace('JSESSIONID=', '').replace(';', '')
                             console.log(match)
                             ctx.cookies.set('JSESSIONID', match)
-                            ctx.set('Access-Control-Allow-Origin','https://mp.mhealth100.com')
                         }
                         response.send(ctx, data, data.resultCode, data.resultDesc)
                     } else {

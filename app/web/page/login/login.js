@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 22:12:58 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-05 23:46:34
+ * @Last Modified time: 2019-02-11 18:40:27
  */
 import Vue from 'vue'
 import {
@@ -67,6 +67,8 @@ export default {
                 )
                 if (!data || data.resultCode !== 0) {
                     Message.warning(data && data.resultDesc || '登录失败')
+                } else {
+                    window.location.replace(`${window.location.origin}/my-doctor-ssr/h5/index`)
                 }
 
 
