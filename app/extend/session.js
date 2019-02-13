@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-01-17 09:35:40 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-17 10:53:06
+ * @Last Modified time: 2019-02-13 15:08:38
  */
 
 
@@ -31,10 +31,15 @@ async function deleteJSessionByCookieJSession(ctx) {
     return ctx && JSessionId && ctx.service.session.deleteByJSessionId(JSessionId)
 }
 
+function getMyDoctorSessionId(ctx) {
+    return ctx.state.myDoctorSessionId
+}
+
 module.exports = {
     getJSessionIdFromCookies,
     setJSessionIdToCookies,
     getDBJSessionInfoByJSessionId,
     getDBJSessionInfoByCookiesJSession,
-    deleteJSessionByCookieJSession
+    deleteJSessionByCookieJSession,
+    getMyDoctorSessionId
 };

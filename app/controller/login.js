@@ -2,15 +2,15 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-11 18:48:09
+ * @Last Modified time: 2019-02-13 15:47:22
  */
 
 'use strict'
 const cryptoJS = require("crypto-js");
 const egg = require('egg')
-const response = require('../../extend/response')
-const rsa = require('../../extend/rsa')
-const jSessionUtil  = require('../../extend/session')
+const response = require('../extend/response')
+const rsa = require('../extend/rsa')
+const jSessionUtil = require('../extend/session')
 
 class Login extends egg.Controller {
 
@@ -80,30 +80,11 @@ class Login extends egg.Controller {
                         let match = res.headers['set-cookie'][0].match(JSESSIONIDReg)
                         if (match) {
                             match = match[0].replace('JSESSIONID=', '').replace(';', '')
-                            jSessionUtil.setJSessionIdToCookies(ctx,match)
-
-                            const saveJSessionIdRes = await ctx.service.session.insert({
+                            jSessionUtil.setJSessionIdToCookies(ctx, match)
+                            await ctx.service.session.insert({
                                 userId: decryptLoginInfo.id,
                                 jSessionId: match
                             })
-
-                            console.log(saveJSessionIdRes)
-                            // const doctorIndexInfo = await ctx.curl(
-                            //     'https://mp.mhealth100.com/ip-healthmanager-mobile-web/doctor/getDoctorIndex', {
-                            //         method: 'POST',
-                            //         dataType: 'json',
-                            //         headers: {
-                            //             Cookie: `JSESSIONID=${match}`
-                            //         },
-                            //         data: {
-                            //             commentCategory: 'CONSULTEVALUATE',
-                            //             doctorOpenId: '2B50BDE7DBE3444C8CF0C4D9CEF8C818',
-                            //             page: 1,
-                            //             pageSize: 10
-                            //         }
-                            //     }
-                            // )
-                            // console.log('doctorIndexInfo',doctorIndexInfo)
                         }
                         response.send(ctx, data, data.resultCode, data.resultDesc)
                     } else {

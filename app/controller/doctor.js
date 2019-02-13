@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-01-17 10:00:51 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-01-17 11:44:24
+ * @Last Modified time: 2019-02-13 15:46:19
  */
 
 
@@ -10,26 +10,10 @@
 const egg = require('egg')
 const response = require('../extend/response')
 const JSessionIdUtil = require('../extend/session')
+const myDoctorRequest = require('../extend/myDoctorRequest')
 
 
 class Doctor extends egg.Controller {
-    async index() {
-        const {
-            ctx
-        } = this
-
-
-
-
-        const JSessionIdInfo = await JSessionIdUtil.getDBJSessionInfoByCookiesJSession(ctx)
-        const isValidJSession = JSessionIdInfo && JSessionIdInfo.jSessionId
-        if (isValidJSession) {
-            await ctx.render('doctorIndex/index.js');
-        } else {
-            ctx.redirect('127.0.0.1:7001/my-doctor-ssr/login')
-        }
-    }
-
     async getDoctorIndex() {
         const {
             ctx
@@ -40,28 +24,12 @@ class Doctor extends egg.Controller {
             doctorOpenId
         } = ctx.query
 
-        const JSessionIdInfo = JSessionIdUtil.getDBJSessionInfoByCookiesJSession(ctx)
-
-        const isValidJSession = JSessionIdInfo && JSessionIdInfo.jSessionId
-
-        if (isValidJSession && doctorOpenId) {
-            const doctorIndexInfo = await ctx.curl(
-                'https://mp.mhealth100.com/ip-healthmanager-mobile-web/doctor/getDoctorIndex', {
-                    method: 'POST',
-                    dataType: 'json',
-                    headers: {
-                        Cookie: `JSESSIONID=${JSessionIdInfo.jSessionId}`
-                    },
-                    data: {
-                        doctorOpenId,
-                        commentCategory: 'CONSULTEVALUATE',
-                        page: 1,
-                        pageSize: 10
-                    }
-                }
-            )
-
-            console.log('doctorIndexInfo', doctorIndexInfo)
+        if (doctorOpenId) {
+            const doctorIndexInfo = await myDoctorRequest.requestApi(ctx, {
+                url: 'doctor/getDoctorIndex',
+                method: 'POST',
+                data: ctx.query
+            })
 
             const resData = doctorIndexInfo.data
 
@@ -73,8 +41,125 @@ class Doctor extends egg.Controller {
 
         } else if (!doctorOpenId) {
             response.sendFail(ctx, 'doctorOpenId为空')
-        } else {
-            ctx.redirect('http://127.0.0.1:7001/my-doctor-ssr/login')
+        }
+    }
+
+    async getDoctorVoiceIndex() {
+        const {
+            ctx
+        } = this
+
+
+        const {
+            doctorOpenId
+        } = ctx.query
+
+        if (doctorOpenId) {
+            const res = await myDoctorRequest.requestApi(ctx, {
+                url: 'doctor/getDoctorVoiceIndex',
+                data: ctx.query
+            })
+
+            const resData = res.data
+
+            if (resData.resultCode === 0) {
+                response.sendSuccess(ctx, resData)
+            } else {
+                response.sendFail(ctx, resData.resultDesc, resData.resultCode)
+            }
+
+        } else if (!doctorOpenId) {
+            response.sendFail(ctx, 'doctorOpenId为空')
+        }
+    }
+
+    async getDoctorDetail() {
+        const {
+            ctx
+        } = this
+
+
+        const {
+            doctorOpenId
+        } = ctx.query
+
+        if (doctorOpenId) {
+            const res = await myDoctorRequest.requestApi(ctx, {
+                url: 'doctor/getDoctorDetail',
+                method: 'POST',
+                data: ctx.query
+            })
+
+            const resData = res.data
+
+            if (resData.resultCode === 0) {
+                response.sendSuccess(ctx, resData)
+            } else {
+                response.sendFail(ctx, resData.resultDesc, resData.resultCode)
+            }
+
+        } else if (!doctorOpenId) {
+            response.sendFail(ctx, 'doctorOpenId为空')
+        }
+    }
+
+    async getDoctorConsltIndex() {
+        const {
+            ctx
+        } = this
+
+
+        const {
+            doctorOpenId
+        } = ctx.query
+
+        if (doctorOpenId) {
+            const res = await myDoctorRequest.requestApi(ctx, {
+                url: 'doctor/getDoctorConsltIndex',
+                method: 'POST',
+                data: ctx.query
+            })
+
+            const resData = res.data
+
+            if (resData.resultCode === 0) {
+                response.sendSuccess(ctx, resData)
+            } else {
+                response.sendFail(ctx, resData.resultDesc, resData.resultCode)
+            }
+
+        } else if (!doctorOpenId) {
+            response.sendFail(ctx, 'doctorOpenId为空')
+        }
+    }
+
+    async getDoctorConsutComments() {
+        const {
+            ctx
+        } = this
+
+
+        const {
+            doctorOpenId
+        } = ctx.query
+
+        if (doctorOpenId) {
+            const res = await myDoctorRequest.requestApi(ctx, {
+                url: 'doctor/getDoctorConsutComments',
+                method: 'POST',
+                data: ctx.query
+            })
+
+            const resData = res.data
+
+            if (resData.resultCode === 0) {
+                response.sendSuccess(ctx, resData)
+            } else {
+                response.sendFail(ctx, resData.resultDesc, resData.resultCode)
+            }
+
+        } else if (!doctorOpenId) {
+            response.sendFail(ctx, 'doctorOpenId为空')
         }
     }
 }
