@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 22:12:58 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-14 09:39:27
+ * @Last Modified time: 2019-02-14 13:16:14
  */
 import Vue from 'vue'
 import {
@@ -44,6 +44,9 @@ export default {
             id = id.trim()
             password = password.trim()
 
+
+            console.log('loginTime: start',new Date().getTime())
+
             if (id && password) {
 
                 const loginInfoTxt = JSON.stringify({
@@ -68,6 +71,8 @@ export default {
                 if (!data || data.resultCode !== 0) {
                     Message.warning(data && data.resultDesc || '登录失败')
                 } else {
+                    console.log('loginTime:success   ',new Date().getTime())
+
                     let query = window.location.search.slice(1).split('&') || []
 
                     if ((query = window.location.search.slice(1)) && (query =  query.split('&')) && Array.isArray(query)) {

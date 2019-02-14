@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-02-13 15:01:35 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-13 15:48:04
+ * @Last Modified time: 2019-02-14 15:36:46
  */
 'use strict';
 
@@ -27,4 +27,5 @@ module.exports = app => {
   router.get('/my-doctor-ssr/api/doctor/getDoctorConsutComments', checkMyDoctorSession, controller.doctor.getDoctorConsutComments)
   router.get('/my-doctor-ssr/api/phoneConsult/index', checkMyDoctorSession, controller.phoneConsult.index)
   router.get('/my-doctor-ssr/api/product/listDoctorProduct', checkMyDoctorSession, controller.product.listDoctorProduct)
+  router.get('/my-doctor-ssr/api/product/recommendProducts', checkMyDoctorSession, controller.product.recommendProducts)
 };
