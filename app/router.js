@@ -20,7 +20,6 @@ module.exports = app => {
   router.get('/', controller.login.index)
   router.get('/my-doctor-ssr/login', controller.login.index)
   router.post('/my-doctor-ssr/api/login', controller.login.login)
-
   router.get('/my-doctor-ssr/api/doctor/getDoctorIndex', checkMyDoctorSession, controller.doctor.getDoctorIndex)
   router.get('/my-doctor-ssr/api/doctor/getDoctorVoiceIndex', checkMyDoctorSession, controller.doctor.getDoctorVoiceIndex)
   router.get('/my-doctor-ssr/api/doctor/getDoctorDetail', checkMyDoctorSession, controller.doctor.getDoctorDetail)
