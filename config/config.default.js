@@ -26,7 +26,7 @@ module.exports = app => {
   };
 
   exports.logger = {
-    consoleLevel: 'DEBUG',
+    consoleLevel: 'ERROR',
     dir: path.join(app.baseDir, 'logs')
   };
 
