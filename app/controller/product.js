@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-02-13 15:19:48 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-14 15:36:32
+ * @Last Modified time: 2019-02-18 12:23:51
  */
 
 "use strict"
@@ -50,6 +50,7 @@ class Product extends egg.Controller {
         } = ctx.query
 
         if (doctorOpenId) {
+            
             const res = await myDoctorRequest.requestApi(ctx, {
                 url: 'product/recommendProducts',
                 data: ctx.query

@@ -26,6 +26,14 @@
         >
           登录
         </el-button>
+        <el-button 
+          class="login-wrapper__form_confrim-btn" 
+          type="primary" 
+          @click.native="onTestLoginClick"
+          round
+        >
+          登录测试账号
+        </el-button>
       </div>
     </div>
   </login-layout>
