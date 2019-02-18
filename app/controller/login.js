@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-18 17:55:15
+ * @Last Modified time: 2019-02-18 17:56:49
  */
 
 'use strict'
@@ -54,9 +54,7 @@ class Login extends egg.Controller {
         if (info) {
 
             const secretKey = ctx.get('Referer')
-
-            console.log(secretKey)
-
+            
             const bytes = cryptoJS.AES.decrypt(info, secretKey)
 
             let decryptLoginInfo
