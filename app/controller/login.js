@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2018-12-23 20:06:55 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-18 17:56:49
+ * @Last Modified time: 2019-02-18 18:09:40
  */
 
 'use strict'
@@ -11,6 +11,10 @@ const egg = require('egg')
 const response = require('../extend/response')
 const rsa = require('../extend/rsa')
 const jSessionUtil = require('../extend/session')
+
+
+const testRefer = 'http://120.79.205.36:3001/my-doctor-ssr/login?redirect_uri=http%3A%2F%2F120.79.205.36%3A3001%2Fmy-doctor-ssr%2Fh5%2Fdoctor-index%3FdoctorOpenId%3D2B50BDE7DBE3444C8CF0C4D9CEF8C818'
+const testInfo = 'U2FsdGVkX1/Q/URvQag1U/59L0BFl/XYKHte6jQKO4N2n/Xy2ILN+MNXDIg+MuAPPy4d2xJTUHtBhOlxeOxSeQ=='
 
 class Login extends egg.Controller {
 
@@ -43,18 +47,21 @@ class Login extends egg.Controller {
         } = ctx.request.body
 
         const {
-            type
+            type,
         } = ctx.request.body
+        
+        
+        
 
         // 测试
-        if(type==='test'){
-            info = 'U2FsdGVkX1+VRgUn1GRsGcAREad+lKD0QqxQOrIGvbo0QIqRpN4xa8yV1wRzlB2DKnncA87kkEn0AocSmoS12w=='
+        if (type === 'test') {
+            info = testInfo
         }
 
         if (info) {
 
-            const secretKey = ctx.get('Referer')
-            
+            const secretKey = type === 'test' ? testRefer : ctx.get('Referer')
+
             const bytes = cryptoJS.AES.decrypt(info, secretKey)
 
             let decryptLoginInfo
