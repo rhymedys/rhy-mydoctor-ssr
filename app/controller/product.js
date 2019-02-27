@@ -27,7 +27,7 @@ class Product extends egg.Controller {
                 data: ctx.query
             })
 
-            const resData = res.data || {}
+            const resData = res.data || {resultCode:410001}
 
             if (resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
@@ -56,7 +56,7 @@ class Product extends egg.Controller {
                 data: ctx.query
             })
 
-            const resData = res.data || {}
+            const resData = res.data || {resultCode:410001}
 
             if (resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
