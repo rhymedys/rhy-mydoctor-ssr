@@ -29,7 +29,7 @@ class Product extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -58,7 +58,7 @@ class Product extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)

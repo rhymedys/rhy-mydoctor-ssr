@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-01-17 10:00:51 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-20 17:17:44
+ * @Last Modified time: 2019-02-27 22:24:54
  */
 
 
@@ -33,7 +33,7 @@ class Doctor extends egg.Controller {
 
             const resData = doctorIndexInfo.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -62,7 +62,7 @@ class Doctor extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -92,7 +92,7 @@ class Doctor extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -122,7 +122,7 @@ class Doctor extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -152,7 +152,7 @@ class Doctor extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
@@ -182,7 +182,7 @@ class Doctor extends egg.Controller {
 
             const resData = res.data
 
-            if (resData.resultCode === 0) {
+            if (resData && resData.resultCode === 0) {
                 response.sendSuccess(ctx, resData)
             } else {
                 response.sendFail(ctx, resData.resultDesc, resData.resultCode)
