@@ -42,6 +42,7 @@ export default function createLayout(name, components, tpl) {
                       <link rel="apple-touch-icon" href="/logo.png">
                       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
                       <script type="text/javascript" src="http://120.79.205.36:3001/lib/js/dpr.js"/>
+                      <script type="text/javascript" src="http://120.79.205.36:3001/lib/js/jsencrypt.min.js"/>
                       </head>
                     <body :class="baseClass">
                       ${tpl}

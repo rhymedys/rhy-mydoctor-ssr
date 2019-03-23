@@ -2,7 +2,7 @@
  * @Author: Rhymedys/Rhymedys@gmail.com 
  * @Date: 2019-02-13 15:01:35 
  * @Last Modified by: Rhymedys
- * @Last Modified time: 2019-02-20 17:17:54
+ * @Last Modified time: 2019-03-23 10:19:32
  */
 'use strict';
 
@@ -20,6 +20,7 @@ module.exports = app => {
   router.get('/', controller.login.index)
   router.get('/my-doctor-ssr/login', controller.login.index)
   router.post('/my-doctor-ssr/api/login', controller.login.login)
+  router.post('/my-doctor-ssr/api/v2/login', controller.login.loginV2)
   router.get('/my-doctor-ssr/api/doctor/getDoctorIndex', checkMyDoctorSession, controller.doctor.getDoctorIndex)
   router.get('/my-doctor-ssr/api/doctor/getDoctorVoiceIndex', checkMyDoctorSession, controller.doctor.getDoctorVoiceIndex)
   router.get('/my-doctor-ssr/api/doctor/getDoctorDetail', checkMyDoctorSession, controller.doctor.getDoctorDetail)

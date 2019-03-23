@@ -7,6 +7,9 @@
 
 module.exports = app => {
   const exports = {};
-
+  exports.logger = {
+    consoleLevel: 'ERROR',
+    dir: path.join(app.baseDir, 'logs')
+  };
   return exports;
 };
