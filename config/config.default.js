@@ -26,7 +26,6 @@ module.exports = app => {
   };
 
   exports.logger = {
-    // consoleLevel: 'ERROR',
     dir: path.join(app.baseDir, 'logs')
   };
 
