@@ -1,6 +1,6 @@
 [Unit]
 Description=rhy-my-doctor-ssr-7001
-After=network.target mongod.service 
+After=network.target
   
 [Service]
 Type=forking
