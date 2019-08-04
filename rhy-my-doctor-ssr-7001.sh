@@ -34,9 +34,9 @@ warn(){
 	echo
 	echo "please input the command which in the list of comman"
 	echo "====================================================================="
-	echo "service rhy-my-doctor-ssr-7002.sh start"
-	echo "service rhy-my-doctor-ssr-7002.sh stop"
-	echo "service rhy-my-doctor-ssr-7002.sh restart"
+	echo "service rhy-my-doctor-ssr-7001.sh start"
+	echo "service rhy-my-doctor-ssr-7001.sh stop"
+	echo "service rhy-my-doctor-ssr-7001.sh restart"
 	echo "====================================================================="
 }
 
