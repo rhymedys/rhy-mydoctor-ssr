@@ -9,12 +9,13 @@ echo "node version"
 echo "npm version" 
 	npm -v
 
-stop(){
+start(){
 	cd $PROJECT_PATH
 	npm run stop
+	npm run start
 }
 
-stop
+start
 
 
 

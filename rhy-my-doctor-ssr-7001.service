@@ -1,0 +1,15 @@
+[Unit]
+Description=rhy-my-doctor-ssr-7001
+After=network.target mongod.service 
+  
+[Service]
+Type=forking
+ExecStart=/usr/local/web-server/my_doctor_ssr/start.sh
+ExecStop=/usr/local/web-server/my_doctor_ssr/stop.sh
+PrivateTmp=true
+Nice=19
+Restart=on-failure
+RestartSec=10s
+  
+[Install]
+WantedBy=multi-user.target
